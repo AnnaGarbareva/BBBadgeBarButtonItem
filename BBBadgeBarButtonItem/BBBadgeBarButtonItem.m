@@ -21,11 +21,25 @@
 
 - (BBBadgeBarButtonItem *)initWithCustomUIButton:(UIButton *)customButton
 {
-    self = [self initWithCustomView:customButton];
+    return [self initWithCustomView:customButton];
+}
+
+- (BBBadgeBarButtonItem *)initWithCustomView:(UIView *)customView
+{
+    self = [super initWithCustomView:customView];
     if (self) {
         [self initializer];
     }
 
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self initializer];
+    }
     return self;
 }
 
