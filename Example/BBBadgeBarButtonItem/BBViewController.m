@@ -37,6 +37,9 @@
 
     // Add it as the leftBarButtonItem of the navigation bar
     self.navigationItem.leftBarButtonItem = barButton;
+    
+    BBBadgeBarButtonItem *item = (BBBadgeBarButtonItem *)self.navigationItem.rightBarButtonItem;
+    item.badgeValue = @"12";
 }
 
 // Fake adding element

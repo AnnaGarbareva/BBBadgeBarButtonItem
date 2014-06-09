@@ -71,7 +71,38 @@
     // Avoids badge to be clipped when animating its scale
     self.customView.clipsToBounds = NO;
 
+    if (!self.customView && self.title) {
+        self.customView = [self customViewWithTitle:self.title];
+    }
+
     [self subscribeForUpdateNotifications];
+}
+
+- (UIView *)customViewWithTitle:(NSString *)title
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.backgroundColor = [UIColor clearColor];
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0) {
+        label.attributedText = [[NSAttributedString alloc] initWithString:title attributes:self.titleTextAttributes];
+    } else {
+        label.text = title;
+    }
+    [label sizeToFit];
+
+    UIView *container = [[UIView alloc] initWithFrame:label.bounds];
+    container.backgroundColor = [UIColor clearColor];
+    container.clipsToBounds = NO;
+    [container addSubview:label];
+
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.target action:self.action];
+    [container addGestureRecognizer:tapGesture];
+
+    CGRect frame = label.frame;
+    frame.origin.x += self.titlePositionAdjustment.horizontal;
+    frame.origin.y += self.titlePositionAdjustment.vertical;
+    label.frame = frame;
+
+    return container;
 }
 
 - (void)subscribeForUpdateNotifications

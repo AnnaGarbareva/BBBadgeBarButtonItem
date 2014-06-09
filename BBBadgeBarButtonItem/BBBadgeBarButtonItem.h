@@ -40,6 +40,11 @@ typedef NS_ENUM(NSInteger, BBBadgePosition) {
 //if badgePosition is custom, used badgeCustomOrigin property
 @property (nonatomic) CGPoint badgeCustomOrigin;
 
+/** Applies when customView is empty (then customView will be generated automatically from title string) */
+@property (nonatomic) NSDictionary *titleTextAttributes MZ_APPEARANCE_SELECTOR NS_AVAILABLE_IOS(6_0);
+@property (nonatomic) UIOffset titlePositionAdjustment MZ_APPEARANCE_SELECTOR;
+
+
 - (BBBadgeBarButtonItem *)initWithCustomUIButton:(UIButton *)customButton;
 
 
