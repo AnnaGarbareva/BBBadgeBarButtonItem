@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B5456F817F94FFF8EB69349 /* libPods-BBBadgeBarButtonItem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F8A7B1D312140CAB28BF36F /* libPods-BBBadgeBarButtonItem.a */; };
 		5EC4E67318A55C5300E06C09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC4E67218A55C5300E06C09 /* Foundation.framework */; };
 		5EC4E67518A55C5300E06C09 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC4E67418A55C5300E06C09 /* CoreGraphics.framework */; };
 		5EC4E67718A55C5300E06C09 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EC4E67618A55C5300E06C09 /* UIKit.framework */; };
@@ -23,7 +24,6 @@
 		5EC4E69E18A55C5300E06C09 /* BBBadgeBarButtonItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC4E69D18A55C5300E06C09 /* BBBadgeBarButtonItemTests.m */; };
 		5EC4E6AD18A55E9F00E06C09 /* ico-to-do-list.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC4E6AB18A55E9F00E06C09 /* ico-to-do-list.png */; };
 		5EC4E6AE18A55E9F00E06C09 /* ico-to-do-list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC4E6AC18A55E9F00E06C09 /* ico-to-do-list@2x.png */; };
-		5EDA3ED018DC5BD100B3587F /* BBBadgeBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDA3ECF18DC5BD100B3587F /* BBBadgeBarButtonItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F8A7B1D312140CAB28BF36F /* libPods-BBBadgeBarButtonItem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BBBadgeBarButtonItem.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC4E66F18A55C5300E06C09 /* BBBadgeBarButtonItem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BBBadgeBarButtonItem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC4E67218A55C5300E06C09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EC4E67418A55C5300E06C09 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -58,8 +59,7 @@
 		5EC4E69D18A55C5300E06C09 /* BBBadgeBarButtonItemTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BBBadgeBarButtonItemTests.m; sourceTree = "<group>"; };
 		5EC4E6AB18A55E9F00E06C09 /* ico-to-do-list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico-to-do-list.png"; sourceTree = "<group>"; };
 		5EC4E6AC18A55E9F00E06C09 /* ico-to-do-list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico-to-do-list@2x.png"; sourceTree = "<group>"; };
-		5EDA3ECE18DC5BD100B3587F /* BBBadgeBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BBBadgeBarButtonItem.h; path = ../../BBBadgeBarButtonItem/BBBadgeBarButtonItem.h; sourceTree = "<group>"; };
-		5EDA3ECF18DC5BD100B3587F /* BBBadgeBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BBBadgeBarButtonItem.m; path = ../../BBBadgeBarButtonItem/BBBadgeBarButtonItem.m; sourceTree = "<group>"; };
+		BB065C554C2540F7A207F2CA /* Pods-BBBadgeBarButtonItem.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BBBadgeBarButtonItem.xcconfig"; path = "Pods/Pods-BBBadgeBarButtonItem.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +70,7 @@
 				5EC4E67518A55C5300E06C09 /* CoreGraphics.framework in Frameworks */,
 				5EC4E67718A55C5300E06C09 /* UIKit.framework in Frameworks */,
 				5EC4E67318A55C5300E06C09 /* Foundation.framework in Frameworks */,
+				4B5456F817F94FFF8EB69349 /* libPods-BBBadgeBarButtonItem.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +94,7 @@
 				5EC4E69718A55C5300E06C09 /* BBBadgeBarButtonItemTests */,
 				5EC4E67118A55C5300E06C09 /* Frameworks */,
 				5EC4E67018A55C5300E06C09 /* Products */,
+				BB065C554C2540F7A207F2CA /* Pods-BBBadgeBarButtonItem.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +114,7 @@
 				5EC4E67418A55C5300E06C09 /* CoreGraphics.framework */,
 				5EC4E67618A55C5300E06C09 /* UIKit.framework */,
 				5EC4E69118A55C5300E06C09 /* XCTest.framework */,
+				1F8A7B1D312140CAB28BF36F /* libPods-BBBadgeBarButtonItem.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -125,7 +128,6 @@
 				5EC4E68418A55C5300E06C09 /* Main.storyboard */,
 				5EC4E68718A55C5300E06C09 /* BBViewController.h */,
 				5EC4E68818A55C5300E06C09 /* BBViewController.m */,
-				5EC4E6B218A55ED600E06C09 /* BBBadgeBarButtonItem */,
 				5EC4E68A18A55C5300E06C09 /* Images.xcassets */,
 				5EC4E67918A55C5300E06C09 /* Supporting Files */,
 			);
@@ -161,15 +163,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		5EC4E6B218A55ED600E06C09 /* BBBadgeBarButtonItem */ = {
-			isa = PBXGroup;
-			children = (
-				5EDA3ECE18DC5BD100B3587F /* BBBadgeBarButtonItem.h */,
-				5EDA3ECF18DC5BD100B3587F /* BBBadgeBarButtonItem.m */,
-			);
-			name = BBBadgeBarButtonItem;
-			sourceTree = "<group>";
-		};
 		5EC4E6B318A55EE600E06C09 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EC4E6A118A55C5300E06C09 /* Build configuration list for PBXNativeTarget "BBBadgeBarButtonItem" */;
 			buildPhases = (
+				22088A56F4CB415FADB2232C /* Check Pods Manifest.lock */,
 				5EC4E66B18A55C5300E06C09 /* Sources */,
 				5EC4E66C18A55C5300E06C09 /* Frameworks */,
 				5EC4E66D18A55C5300E06C09 /* Resources */,
+				79AB7B0234684CDF813CA1B9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -243,6 +238,8 @@
 			mainGroup = 5EC4E66618A55C5300E06C09;
 			productRefGroup = 5EC4E67018A55C5300E06C09 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+			);
 			projectRoot = "";
 			targets = (
 				5EC4E66E18A55C5300E06C09 /* BBBadgeBarButtonItem */,
@@ -274,12 +271,44 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		22088A56F4CB415FADB2232C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		79AB7B0234684CDF813CA1B9 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-BBBadgeBarButtonItem-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5EC4E66B18A55C5300E06C09 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EDA3ED018DC5BD100B3587F /* BBBadgeBarButtonItem.m in Sources */,
 				5EC4E68918A55C5300E06C09 /* BBViewController.m in Sources */,
 				5EC4E68318A55C5300E06C09 /* BBAppDelegate.m in Sources */,
 				5EC4E67F18A55C5300E06C09 /* main.m in Sources */,
@@ -404,6 +433,7 @@
 		};
 		5EC4E6A218A55C5300E06C09 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB065C554C2540F7A207F2CA /* Pods-BBBadgeBarButtonItem.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -418,6 +448,7 @@
 		};
 		5EC4E6A318A55C5300E06C09 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB065C554C2540F7A207F2CA /* Pods-BBBadgeBarButtonItem.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

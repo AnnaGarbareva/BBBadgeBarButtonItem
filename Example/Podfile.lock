@@ -1,0 +1,20 @@
+PODS:
+  - BBBadgeBarButtonItem (1.0):
+    - Block-KVO
+    - MZAppearance
+  - Block-KVO (2.2.1)
+  - MZAppearance (1.1.3)
+
+DEPENDENCIES:
+  - BBBadgeBarButtonItem (from `../`)
+
+EXTERNAL SOURCES:
+  BBBadgeBarButtonItem:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BBBadgeBarButtonItem: fc7b7cf4d2b0382b1003f005a1559ba9d4346bba
+  Block-KVO: dc4bf1bb23007380901e047da884c130776007e9
+  MZAppearance: c88502c0c2345120630c34e09d5ff09e2969ba30
+
+COCOAPODS: 0.33.1

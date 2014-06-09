@@ -6,6 +6,7 @@
 //
 
 #import "BBBadgeBarButtonItem.h"
+#import "NSObject+MTKObserving.h"
 
 @interface BBBadgeBarButtonItem()
 
@@ -13,6 +14,7 @@
 @property (nonatomic) UILabel *badge;
 
 @end
+
 
 @implementation BBBadgeBarButtonItem
 
@@ -30,7 +32,6 @@
     if (self) {
         [self initializer];
     }
-
     return self;
 }
 
@@ -43,26 +44,56 @@
     return self;
 }
 
++ (id)appearance
+{
+    return [MZAppearance appearanceForClass:[self class]];
+}
+
++ (void)initialize
+{
+    [[BBBadgeBarButtonItem appearance] setBadgeBGColor:[UIColor redColor]];
+    [[BBBadgeBarButtonItem appearance] setBadgeTextColor:[UIColor whiteColor]];
+    [[BBBadgeBarButtonItem appearance] setBadgeFont:[UIFont systemFontOfSize:12.0]];
+    [[BBBadgeBarButtonItem appearance] setShouldAnimateBadge:YES];
+    [[BBBadgeBarButtonItem appearance] setShouldHideBadgeAtZero:YES];
+    [[BBBadgeBarButtonItem appearance] setShouldHideBadgeAtZero:YES];
+    [[BBBadgeBarButtonItem appearance] setBadgePadding:6];
+    [[BBBadgeBarButtonItem appearance] setBadgeMinSize:8];
+    [[BBBadgeBarButtonItem appearance] setBadgePosition:BBBadgePositionTopRight];
+    [super initialize];
+}
+
 - (void)initializer
 {
     // Default design initialization
-    self.badgeBGColor   = [UIColor redColor];
-    self.badgeTextColor = [UIColor whiteColor];
-    self.badgeFont      = [UIFont systemFontOfSize:12.0];
-    self.badgePadding   = 6;
-    self.badgeMinSize   = 8;
-    self.badgeOriginX   = 7;
-    self.badgeOriginY   = -9;
-    self.shouldHideBadgeAtZero = YES;
-    self.shouldAnimateBadge = YES;
+    [[[self class] appearance] applyInvocationTo:self];
+
     // Avoids badge to be clipped when animating its scale
     self.customView.clipsToBounds = NO;
+
+    [self subscribeForUpdateNotifications];
+}
+
+- (void)subscribeForUpdateNotifications
+{
+    [self observeProperty:@"badgeBGColor" withSelector:@selector(updateBadge)];
+    [self observeProperty:@"badgeTextColor" withSelector:@selector(updateBadge)];
+    [self observeProperty:@"badgeFont" withSelector:@selector(updateBadge)];
+    [self observeProperty:@"badgePadding" withSelector:@selector(updateBadge)];
+    [self observeProperty:@"badgeMinSize" withSelector:@selector(updateBadge)];
+    [self observeProperty:@"badgeCustomOrigin" withSelector:@selector(updateBadge)];
+    [self observeProperty:@"badgePosition" withSelector:@selector(updateBadge)];
+}
+
+- (void)dealloc
+{
+    [self removeAllObservations];
 }
 
 #pragma mark - Utility methods
 
 // Handle badge display when its properties have been changed (color, font, ...)
-- (void)refreshBadge
+- (void)updateBadgeStyle
 {
     // Change new attributes
     self.badge.textColor        = self.badgeTextColor;
@@ -91,9 +122,38 @@
 
     // Using const we make sure the badge doesn't get too smal
     minWidth = (minWidth < minHeight) ? minHeight : expectedLabelSize.width;
-    self.badge.frame = CGRectMake(self.badgeOriginX, self.badgeOriginY, minWidth + padding, minHeight + padding);
+    CGPoint origin = [self badgeOrigin];
+    self.badge.frame = CGRectMake(origin.x, origin.y, minWidth + padding, minHeight + padding);
     self.badge.layer.cornerRadius = (minHeight + padding) / 2;
     self.badge.layer.masksToBounds = YES;
+}
+
+- (CGPoint)badgeOrigin
+{
+    CGPoint origin;
+
+    CGSize badgeHalfSize = CGSizeMake(floorf(self.badge.frame.size.width*0.5f), floorf(self.badge.frame.size.height*0.5f));
+    CGSize viewSize = self.customView.frame.size;
+
+    switch (self.badgePosition) {
+        case BBBadgePositionTopLeft:
+            origin = CGPointMake( -badgeHalfSize.width, -badgeHalfSize.height);
+            break;
+        default:
+        case BBBadgePositionTopRight:
+            origin = CGPointMake(viewSize.width - badgeHalfSize.width, - badgeHalfSize.height);
+            break;
+        case BBBadgePositionBottomLeft:
+            origin = CGPointMake(- badgeHalfSize.width,viewSize.height - badgeHalfSize.height);
+            break;
+        case BBBadgePositionBottomRight:
+            origin = CGPointMake(viewSize.width - badgeHalfSize.width,viewSize.height - badgeHalfSize.height);
+            break;
+        case BBBadgePositionBottomCustom:
+           origin = self.badgeCustomOrigin;
+    }
+
+    return origin;
 }
 
 // Handle the badge changing value
@@ -151,7 +211,8 @@
         [self removeBadge];
     } else if (!self.badge) {
         // Create a new badge because not existing
-        self.badge                      = [[UILabel alloc] initWithFrame:CGRectMake(self.badgeOriginX, self.badgeOriginY, 20, 20)];
+        CGPoint origin = [self badgeOrigin];
+        self.badge                      = [[UILabel alloc] initWithFrame:CGRectMake(origin.x, origin.y, 20, 20)];
         self.badge.textColor            = self.badgeTextColor;
         self.badge.backgroundColor      = self.badgeBGColor;
         self.badge.font                 = self.badgeFont;
@@ -164,65 +225,12 @@
     }
 }
 
-- (void)setBadgeBGColor:(UIColor *)badgeBGColor
+#pragma mark - Updating
+
+- (void)updateBadge
 {
-    _badgeBGColor = badgeBGColor;
-
     if (self.badge) {
-        [self refreshBadge];
-    }
-}
-
-- (void)setBadgeTextColor:(UIColor *)badgeTextColor
-{
-    _badgeTextColor = badgeTextColor;
-
-    if (self.badge) {
-        [self refreshBadge];
-    }
-}
-
-- (void)setBadgeFont:(UIFont *)badgeFont
-{
-    _badgeFont = badgeFont;
-
-    if (self.badge) {
-        [self refreshBadge];
-    }
-}
-
-- (void)setBadgePadding:(CGFloat)badgePadding
-{
-    _badgePadding = badgePadding;
-
-    if (self.badge) {
-        [self updateBadgeFrame];
-    }
-}
-
-- (void)setBadgeMinSize:(CGFloat)badgeMinSize
-{
-    _badgeMinSize = badgeMinSize;
-
-    if (self.badge) {
-        [self updateBadgeFrame];
-    }
-}
-
-- (void)setBadgeOriginX:(CGFloat)badgeOriginX
-{
-    _badgeOriginX = badgeOriginX;
-
-    if (self.badge) {
-        [self updateBadgeFrame];
-    }
-}
-
-- (void)setBadgeOriginY:(CGFloat)badgeOriginY
-{
-    _badgeOriginY = badgeOriginY;
-
-    if (self.badge) {
+        [self updateBadgeStyle];
         [self updateBadgeFrame];
     }
 }

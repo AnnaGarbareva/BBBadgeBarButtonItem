@@ -30,9 +30,10 @@
     BBBadgeBarButtonItem *barButton = [[BBBadgeBarButtonItem alloc] initWithCustomUIButton:customButton];
     // Set a value for the badge
     barButton.badgeValue = @"2";
-    
-    barButton.badgeOriginX = 13;
-    barButton.badgeOriginY = -9;
+
+    barButton.badgePosition = BBBadgePositionTopRight;
+//    barButton.badgeOriginX = 13;
+//    barButton.badgeOriginY = -9;
 
     // Add it as the leftBarButtonItem of the navigation bar
     self.navigationItem.leftBarButtonItem = barButton;
@@ -78,13 +79,13 @@
 // Example of how to change the position of the badge
 - (IBAction)changePositionButtonPressed:(UIButton *)sender {
     BBBadgeBarButtonItem *barButton = (BBBadgeBarButtonItem *)self.navigationItem.leftBarButtonItem;
+
     if (sender.selected) {
-        barButton.badgeOriginX = 13;
-        barButton.badgeOriginY = -9;
+        barButton.badgePosition = BBBadgePositionTopRight;
     }
     else {
-        barButton.badgeOriginX = -10;
-        barButton.badgeOriginY = 5;
+        barButton.badgePosition = BBBadgePositionBottomLeft;
+
     }
     sender.selected = !sender.selected;
 }

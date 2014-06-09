@@ -13,5 +13,7 @@ Pod::Spec.new do |s|
   s.source_files = 'BBBadgeBarButtonItem/BBBadgeBarButtonItem.{h,m}'
   s.platform     = :ios, '6.0'
   s.requires_arc = true
+  s.dependency       "MZAppearance"
+  s.dependency       "Block-KVO"
 
 end

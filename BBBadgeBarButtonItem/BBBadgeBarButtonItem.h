@@ -6,6 +6,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MZAppearance.h"
+
+typedef NS_ENUM(NSInteger, BBBadgePosition) {
+    BBBadgePositionTopLeft,
+    BBBadgePositionTopRight,
+    BBBadgePositionBottomLeft,
+    BBBadgePositionBottomRight,
+    BBBadgePositionBottomCustom
+};
 
 @interface BBBadgeBarButtonItem : UIBarButtonItem
 
@@ -14,23 +23,25 @@
 // Badge value to be display
 @property (nonatomic) NSString *badgeValue;
 // Badge background color
-@property (nonatomic) UIColor *badgeBGColor;
+@property (nonatomic) UIColor *badgeBGColor MZ_APPEARANCE_SELECTOR;
 // Badge text color
-@property (nonatomic) UIColor *badgeTextColor;
+@property (nonatomic) UIColor *badgeTextColor MZ_APPEARANCE_SELECTOR;
 // Badge font
-@property (nonatomic) UIFont *badgeFont;
+@property (nonatomic) UIFont *badgeFont MZ_APPEARANCE_SELECTOR;
 // Padding value for the badge
-@property (nonatomic) CGFloat badgePadding;
+@property (nonatomic) CGFloat badgePadding MZ_APPEARANCE_SELECTOR;
 // Minimum size badge to small
-@property (nonatomic) CGFloat badgeMinSize;
-// Values for offseting the badge over the BarButtonItem you picked
-@property (nonatomic) CGFloat badgeOriginX;
-@property (nonatomic) CGFloat badgeOriginY;
+@property (nonatomic) CGFloat badgeMinSize MZ_APPEARANCE_SELECTOR;
 // In case of numbers, remove the badge when reaching zero
-@property BOOL shouldHideBadgeAtZero;
+@property (nonatomic) BOOL shouldHideBadgeAtZero MZ_APPEARANCE_SELECTOR;
 // Badge has a bounce animation when value changes
-@property BOOL shouldAnimateBadge;
+@property (nonatomic) BOOL shouldAnimateBadge MZ_APPEARANCE_SELECTOR;
+@property (nonatomic) BBBadgePosition badgePosition MZ_APPEARANCE_SELECTOR;
+//if badgePosition is custom, used badgeCustomOrigin property
+@property (nonatomic) CGPoint badgeCustomOrigin;
 
 - (BBBadgeBarButtonItem *)initWithCustomUIButton:(UIButton *)customButton;
+
+
 
 @end
