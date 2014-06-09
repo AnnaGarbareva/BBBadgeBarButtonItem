@@ -186,7 +186,7 @@
     CGPoint origin;
 
     CGSize badgeHalfSize = CGSizeMake(floorf(self.badge.frame.size.width*0.5f), floorf(self.badge.frame.size.height*0.5f));
-    CGSize viewSize = self.customView.frame.size;
+    CGSize viewSize = self.badge.superview.frame.size;
 
     switch (self.badgePosition) {
         case BBBadgePositionTopLeft:
@@ -252,6 +252,7 @@
     }];
 }
 
+
 #pragma mark - Setters
 
 - (void)setBadgeValue:(NSString *)badgeValue
@@ -271,7 +272,11 @@
         self.badge.font                 = self.badgeFont;
         self.badge.textAlignment        = NSTextAlignmentCenter;
 
-        [self.customView addSubview:self.badge];
+        if (isCustomViewGenerated) {
+            [[self.customView.subviews lastObject] addSubview:self.badge];
+        } else {
+            [self.customView addSubview:self.badge];
+        }
         [self updateBadgeValueAnimated:NO];
     } else {
         [self updateBadgeValueAnimated:YES];
