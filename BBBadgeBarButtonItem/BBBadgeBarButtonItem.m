@@ -16,7 +16,9 @@
 @end
 
 
-@implementation BBBadgeBarButtonItem
+@implementation BBBadgeBarButtonItem {
+    BOOL isCustomViewGenerated;
+}
 
 
 #pragma mark - Init methods
@@ -87,22 +89,42 @@
     } else {
         label.text = title;
     }
+    label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [label sizeToFit];
 
-    UIView *container = [[UIView alloc] initWithFrame:label.bounds];
+    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, label.frame.size.width, 44)];
     container.backgroundColor = [UIColor clearColor];
     container.clipsToBounds = NO;
     [container addSubview:label];
 
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.target action:self.action];
-    [container addGestureRecognizer:tapGesture];
-
     CGRect frame = label.frame;
     frame.origin.x += self.titlePositionAdjustment.horizontal;
-    frame.origin.y += self.titlePositionAdjustment.vertical;
+    frame.origin.y = floorf((container.frame.size.height - frame.size.height)*0.5f) + self.titlePositionAdjustment.vertical;
     label.frame = frame;
 
+    isCustomViewGenerated = YES;
+
     return container;
+}
+
+- (void)setTarget:(id)target
+{
+    [super setTarget:target];
+    [self setupGestureRecognizerIfNeeded];
+}
+
+- (void)setAction:(SEL)action
+{
+    [super setAction:action];
+    [self setupGestureRecognizerIfNeeded];
+}
+
+- (void)setupGestureRecognizerIfNeeded
+{
+    if (isCustomViewGenerated && self.action && self.target) {
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.target action:self.action];
+        [self.customView addGestureRecognizer:tapGesture];
+    }
 }
 
 - (void)subscribeForUpdateNotifications
@@ -181,7 +203,7 @@
             origin = CGPointMake(viewSize.width - badgeHalfSize.width,viewSize.height - badgeHalfSize.height);
             break;
         case BBBadgePositionBottomCustom:
-           origin = self.badgeCustomOrigin;
+            origin = self.badgeCustomOrigin;
     }
 
     return origin;
