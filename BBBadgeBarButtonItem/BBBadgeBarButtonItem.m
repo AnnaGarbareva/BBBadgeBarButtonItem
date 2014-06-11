@@ -17,7 +17,8 @@
 
 
 @implementation BBBadgeBarButtonItem {
-    BOOL isCustomViewGenerated;
+    UIView *badgeContainer;
+    UIGestureRecognizer *customActionGesture;
 }
 
 
@@ -53,15 +54,18 @@
 
 + (void)initialize
 {
-    [[BBBadgeBarButtonItem appearance] setBadgeBGColor:[UIColor redColor]];
-    [[BBBadgeBarButtonItem appearance] setBadgeTextColor:[UIColor whiteColor]];
-    [[BBBadgeBarButtonItem appearance] setBadgeFont:[UIFont systemFontOfSize:12.0]];
-    [[BBBadgeBarButtonItem appearance] setShouldAnimateBadge:YES];
-    [[BBBadgeBarButtonItem appearance] setShouldHideBadgeAtZero:YES];
-    [[BBBadgeBarButtonItem appearance] setShouldHideBadgeAtZero:YES];
-    [[BBBadgeBarButtonItem appearance] setBadgePadding:6];
-    [[BBBadgeBarButtonItem appearance] setBadgeMinSize:8];
-    [[BBBadgeBarButtonItem appearance] setBadgePosition:BBBadgePositionTopRight];
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        [[BBBadgeBarButtonItem appearance] setBadgeBGColor:[UIColor redColor]];
+        [[BBBadgeBarButtonItem appearance] setBadgeTextColor:[UIColor whiteColor]];
+        [[BBBadgeBarButtonItem appearance] setBadgeFont:[UIFont systemFontOfSize:12.0]];
+        [[BBBadgeBarButtonItem appearance] setShouldAnimateBadge:YES];
+        [[BBBadgeBarButtonItem appearance] setShouldHideBadgeAtZero:YES];
+        [[BBBadgeBarButtonItem appearance] setShouldHideBadgeAtZero:YES];
+        [[BBBadgeBarButtonItem appearance] setBadgePadding:6];
+        [[BBBadgeBarButtonItem appearance] setBadgeMinSize:8];
+        [[BBBadgeBarButtonItem appearance] setBadgePosition:BBBadgePositionTopRight];
+    });
     [super initialize];
 }
 
@@ -75,6 +79,8 @@
 
     if (!self.customView && self.title) {
         self.customView = [self customViewWithTitle:self.title];
+    } else {
+        badgeContainer = self.customView;
     }
 
     [self subscribeForUpdateNotifications];
@@ -102,7 +108,10 @@
     frame.origin.y = floorf((container.frame.size.height - frame.size.height)*0.5f) + self.titlePositionAdjustment.vertical;
     label.frame = frame;
 
-    isCustomViewGenerated = YES;
+    badgeContainer = label;
+
+    customActionGesture = [[UITapGestureRecognizer alloc] init];
+    [container addGestureRecognizer:customActionGesture];
 
     return container;
 }
@@ -121,9 +130,8 @@
 
 - (void)setupGestureRecognizerIfNeeded
 {
-    if (isCustomViewGenerated && self.action && self.target) {
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self.target action:self.action];
-        [self.customView addGestureRecognizer:tapGesture];
+    if (self.action && self.target) {
+        [customActionGesture addTarget:self.target action:self.action];
     }
 }
 
@@ -272,11 +280,8 @@
         self.badge.font                 = self.badgeFont;
         self.badge.textAlignment        = NSTextAlignmentCenter;
 
-        if (isCustomViewGenerated) {
-            [[self.customView.subviews lastObject] addSubview:self.badge];
-        } else {
-            [self.customView addSubview:self.badge];
-        }
+        [badgeContainer addSubview:self.badge];
+
         [self updateBadgeValueAnimated:NO];
     } else {
         [self updateBadgeValueAnimated:YES];
