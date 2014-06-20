@@ -73,16 +73,18 @@
 {
     // Default design initialization
     [[[self class] appearance] applyInvocationTo:self];
-
-    // Avoids badge to be clipped when animating its scale
-    self.customView.clipsToBounds = NO;
-
+    
+    
     if (!self.customView && self.title) {
         self.customView = [self customViewWithTitle:self.title];
     } else {
         badgeContainer = self.customView;
     }
-
+    
+    // Avoids badge to be clipped when animating its scale
+    self.customView.clipsToBounds = NO;
+    badgeContainer.clipsToBounds = NO;
+    
     [self subscribeForUpdateNotifications];
 }
 
@@ -97,22 +99,22 @@
     }
     label.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
     [label sizeToFit];
-
+    
     UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, label.frame.size.width, 44)];
     container.backgroundColor = [UIColor clearColor];
     container.clipsToBounds = NO;
     [container addSubview:label];
-
+    
     CGRect frame = label.frame;
     frame.origin.x += self.titlePositionAdjustment.horizontal;
     frame.origin.y = floorf((container.frame.size.height - frame.size.height)*0.5f) + self.titlePositionAdjustment.vertical;
     label.frame = frame;
-
+    
     badgeContainer = label;
-
+    
     customActionGesture = [[UITapGestureRecognizer alloc] init];
     [container addGestureRecognizer:customActionGesture];
-
+    
     return container;
 }
 
@@ -170,17 +172,17 @@
     // We don't call sizeToFit on the true label to avoid bad display
     UILabel *frameLabel = [self duplicateLabel:self.badge];
     [frameLabel sizeToFit];
-
+    
     CGSize expectedLabelSize = frameLabel.frame.size;
-
+    
     // Make sure that for small value, the badge will be big enough
     CGFloat minHeight = expectedLabelSize.height;
-
+    
     // Using a const we make sure the badge respect the minimum size
     minHeight = (minHeight < self.badgeMinSize) ? self.badgeMinSize : expectedLabelSize.height;
     CGFloat minWidth = expectedLabelSize.width;
     CGFloat padding = self.badgePadding;
-
+    
     // Using const we make sure the badge doesn't get too smal
     minWidth = (minWidth < minHeight) ? minHeight : expectedLabelSize.width;
     CGPoint origin = [self badgeOrigin];
@@ -192,10 +194,10 @@
 - (CGPoint)badgeOrigin
 {
     CGPoint origin;
-
+    
     CGSize badgeHalfSize = CGSizeMake(floorf(self.badge.frame.size.width*0.5f), floorf(self.badge.frame.size.height*0.5f));
     CGSize viewSize = self.badge.superview.frame.size;
-
+    
     switch (self.badgePosition) {
         case BBBadgePositionTopLeft:
             origin = CGPointMake( -badgeHalfSize.width, -badgeHalfSize.height);
@@ -213,7 +215,7 @@
         case BBBadgePositionBottomCustom:
             origin = self.badgeCustomOrigin;
     }
-
+    
     return origin;
 }
 
@@ -229,10 +231,10 @@
         [animation setTimingFunction:[CAMediaTimingFunction functionWithControlPoints:.4 :1.3 :1 :1]];
         [self.badge.layer addAnimation:animation forKey:@"bounceAnimation"];
     }
-
+    
     // Set the new value
     self.badge.text = self.badgeValue;
-
+    
     // Animate the size modification if needed
     NSTimeInterval duration = animated ? 0.2 : 0;
     [UIView animateWithDuration:duration animations:^{
@@ -245,7 +247,7 @@
     UILabel *duplicateLabel = [[UILabel alloc] initWithFrame:labelToCopy.frame];
     duplicateLabel.text = labelToCopy.text;
     duplicateLabel.font = labelToCopy.font;
-
+    
     return duplicateLabel;
 }
 
@@ -267,7 +269,7 @@
 {
     // Set new value
     _badgeValue = badgeValue;
-
+    
     // When changing the badge value check if we need to remove the badge
     if (!badgeValue || [badgeValue isEqualToString:@""] || ([badgeValue isEqualToString:@"0"] && self.shouldHideBadgeAtZero)) {
         [self removeBadge];
@@ -279,9 +281,9 @@
         self.badge.backgroundColor      = self.badgeBGColor;
         self.badge.font                 = self.badgeFont;
         self.badge.textAlignment        = NSTextAlignmentCenter;
-
+        
         [badgeContainer addSubview:self.badge];
-
+        
         [self updateBadgeValueAnimated:NO];
     } else {
         [self updateBadgeValueAnimated:YES];

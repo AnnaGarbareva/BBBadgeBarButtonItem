@@ -56,8 +56,8 @@
       <file leaf-file-name="BBBadgeBarButtonItem.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../BBBadgeBarButtonItem/BBBadgeBarButtonItem.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.04475043" vertical-offset="936" max-vertical-offset="3978">
-              <caret line="74" column="55" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
+            <state vertical-scroll-proportion="0.35800344" vertical-offset="494" max-vertical-offset="3978">
+              <caret line="54" column="18" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="18" />
               <folding>
                 <element signature="e#140#172#0" expanded="true" />
               </folding>
@@ -333,13 +333,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1000" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32929516" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32929516" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929516" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -695,8 +695,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../BBBadgeBarButtonItem/BBBadgeBarButtonItem.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04475043" vertical-offset="936" max-vertical-offset="3978">
-          <caret line="74" column="55" selection-start-line="74" selection-start-column="55" selection-end-line="74" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.35800344" vertical-offset="494" max-vertical-offset="3978">
+          <caret line="54" column="18" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="18" />
           <folding>
             <element signature="e#140#172#0" expanded="true" />
           </folding>
