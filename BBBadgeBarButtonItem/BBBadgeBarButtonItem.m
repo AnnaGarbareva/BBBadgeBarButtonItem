@@ -38,6 +38,42 @@
     return self;
 }
 
+- (id)initWithImage:(UIImage *)image style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action
+{
+    self = [super initWithImage:image style:style target:target action:action];
+    if (self) {
+        [self initializer];
+    }
+    return self;
+}
+
+- (id)initWithImage:(UIImage *)image landscapeImagePhone:(UIImage *)landscapeImagePhone style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action
+{
+    self = [super initWithImage:image landscapeImagePhone:landscapeImagePhone style:style target:target action:action];
+    if (self) {
+        [self initializer];
+    }
+    return self;
+}
+
+- (id)initWithTitle:(NSString *)title style:(UIBarButtonItemStyle)style target:(id)target action:(SEL)action
+{
+    self = [super initWithTitle:title style:style target:target action:action];
+    if (self) {
+        [self initializer];
+    }
+    return self;
+}
+
+- (id)initWithBarButtonSystemItem:(UIBarButtonSystemItem)systemItem target:(id)target action:(SEL)action
+{
+    self = [super initWithBarButtonSystemItem:systemItem target:target action:action];
+    if (self) {
+        [self initializer];
+    }
+    return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
@@ -114,6 +150,7 @@
     
     customActionGesture = [[UITapGestureRecognizer alloc] init];
     [container addGestureRecognizer:customActionGesture];
+    [self setupGestureRecognizerIfNeeded];
     
     return container;
 }
