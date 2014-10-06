@@ -223,7 +223,7 @@
     // Using const we make sure the badge doesn't get too smal
     minWidth = (minWidth < minHeight) ? minHeight : expectedLabelSize.width;
     CGPoint origin = [self badgeOrigin];
-    self.badge.frame = CGRectMake(origin.x, origin.y, minWidth + padding, minHeight + padding);
+    self.badge.frame = CGRectMake(origin.x, origin.y, self.badge.frame.size.width, self.frame.size.height);
     self.badge.layer.cornerRadius = (minHeight + padding) / 2;
     self.badge.layer.masksToBounds = YES;
 }
@@ -241,13 +241,13 @@
             break;
         default:
         case BBBadgePositionTopRight:
-            origin = CGPointMake(viewSize.width - badgeHalfSize.width, - badgeHalfSize.height);
+            origin = CGPointMake(ceilf(viewSize.width - badgeHalfSize.width), - badgeHalfSize.height);
             break;
         case BBBadgePositionBottomLeft:
-            origin = CGPointMake(- badgeHalfSize.width,viewSize.height - badgeHalfSize.height);
+            origin = CGPointMake(- badgeHalfSize.width,ceilf(viewSize.height - badgeHalfSize.height));
             break;
         case BBBadgePositionBottomRight:
-            origin = CGPointMake(viewSize.width - badgeHalfSize.width,viewSize.height - badgeHalfSize.height);
+            origin = CGPointMake(ceilf(viewSize.width - badgeHalfSize.width),ceilf(viewSize.height - badgeHalfSize.height));
             break;
         case BBBadgePositionBottomCustom:
             origin = self.badgeCustomOrigin;
@@ -312,8 +312,8 @@
         [self removeBadge];
     } else if (!self.badge) {
         // Create a new badge because not existing
-        CGPoint origin = [self badgeOrigin];
-        self.badge                      = [[UILabel alloc] initWithFrame:CGRectMake(origin.x, origin.y, 20, 20)];
+        self.badge                      = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 16, 16)];
+        [self updateBadgeFrame];
         self.badge.textColor            = self.badgeTextColor;
         self.badge.backgroundColor      = self.badgeBGColor;
         self.badge.font                 = self.badgeFont;
