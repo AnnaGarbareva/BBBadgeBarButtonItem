@@ -223,7 +223,7 @@
     // Using const we make sure the badge doesn't get too smal
     minWidth = (minWidth < minHeight) ? minHeight : expectedLabelSize.width;
     CGPoint origin = [self badgeOrigin];
-    self.badge.frame = CGRectMake(origin.x, origin.y, self.badge.frame.size.width, self.frame.size.height);
+    self.badge.frame = CGRectMake(origin.x, origin.y, self.badge.frame.size.width, self.badge.frame.size.height);
     self.badge.layer.cornerRadius = (minHeight + padding) / 2;
     self.badge.layer.masksToBounds = YES;
 }
